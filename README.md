@@ -55,7 +55,7 @@ Text domain: `post-bulk-actions`
 
 ## 🤝 Contributing
 
-Pull requests are welcome. If you encounter a bug or have a feature request, please open an [issue](https://github.com/tu-usuario/post-bulk-actions/issues).
+Pull requests are welcome. If you encounter a bug or have a feature request, please open an [issue](https://github.com/jorgearaya474/post-bulk-actions/issues).
 
 ---
 
