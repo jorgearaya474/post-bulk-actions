@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:       Post Bulk Actions
- * Plugin URI:        https://jorgearaya.com/projects/post-bulk-actions
  * Description:       Open multiple selected posts/pages in new editor tabs for efficient bulk editing.
  * Version:           1.0.0
  * Author:            Jorge Araya

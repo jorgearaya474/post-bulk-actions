@@ -17,10 +17,7 @@ class Post_Bulk_Actions {
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
-		add_filter( 'bulk_actions-edit-post', array( $this, 'add_bulk_actions_options' ) );
-		add_filter( 'bulk_actions-edit-page', array( $this, 'add_bulk_actions_options' ) );
-		add_filter( 'handle_bulk_actions-edit-post', array( $this, 'handle_bulk_actions' ), 10, 3 );
-		add_filter( 'handle_bulk_actions-edit-page', array( $this, 'handle_bulk_actions' ), 10, 3 );
+		add_action( 'init', array( $this, 'register_bulk_actions_for_post_types' ) );
 		add_action( 'admin_notices', array( $this, 'show_admin_notices' ) );
 	}
 
@@ -29,6 +26,18 @@ class Post_Bulk_Actions {
 	 */
 	public function load_textdomain() {
 		load_plugin_textdomain( 'post-bulk-actions', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+
+	/**
+	 * Enable options for all post types
+	 */
+	public function register_bulk_actions_for_post_types() {
+		$post_types = get_post_types( array( 'public' => true ), 'names' );
+
+		foreach ( $post_types as $post_type ) {
+			add_filter( "bulk_actions-edit-{$post_type}", array( $this, 'add_bulk_actions_options' ) );
+			add_filter( "handle_bulk_actions-edit-{$post_type}", array( $this, 'handle_bulk_actions' ), 10, 3 );
+		}
 	}
 
 	/**
